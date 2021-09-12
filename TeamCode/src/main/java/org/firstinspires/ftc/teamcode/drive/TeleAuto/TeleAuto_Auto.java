@@ -26,7 +26,7 @@ import java.util.Arrays;
 @Autonomous
 public class TeleAuto_Auto extends LinearOpMode
 {
-    //Create elapsed time and robot hardware objects
+    //Create elapsed time and robot hardware object
     RobotHardwareOBV2 robot   = new RobotHardwareOBV2();
     ElapsedTime runtime = new ElapsedTime();
 
