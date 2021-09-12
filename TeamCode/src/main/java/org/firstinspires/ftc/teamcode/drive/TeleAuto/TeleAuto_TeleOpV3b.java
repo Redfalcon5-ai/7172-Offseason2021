@@ -49,7 +49,7 @@ public class TeleAuto_TeleOpV3b extends LinearOpMode {
 
         boolean armDown = false;
 
-        robot.dropDown();
+        robot.dropDown(); //
 
         try {
             File trajFile = new File("Instances.txt");
