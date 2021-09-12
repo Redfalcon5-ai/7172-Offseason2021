@@ -69,7 +69,7 @@ public class TeleAuto_TeleOpV3b extends LinearOpMode {
 
         waitForStart();
         telemetry.log().setCapacity(16);
-        // robot.telemetry = telemetry
+        // robot.telemetry = telemetryy
         robot.grabber.setPosition(0.025);
 
         double targetH = robot.getHeading();
