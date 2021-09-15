@@ -1,21 +1,25 @@
-package org.firstinspires.ftc.teamcode.drive.TeleAuto;
+package org.firstinspires.ftc.teamcode.drive.Mimicking;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.drive.dev.TeleAuto_Event;
+import org.firstinspires.ftc.teamcode.drive.dev.TeleAuto_PosStorage;
 
 import java.util.ArrayList;
 
-public class TeleAuto_TeleOp extends LinearOpMode {
+@TeleOp(group = "drive")
+public class mimickingTeleOpV1 extends LinearOpMode {
 
     ArrayList<TeleAuto_Event> events = new ArrayList<TeleAuto_Event>();
     int count = 0;
 
     int speed = 40;
+
+    boolean aLast = false;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -31,6 +35,7 @@ public class TeleAuto_TeleOp extends LinearOpMode {
         waitForStart();
 
         while (!isStopRequested()) {
+
             drive.setWeightedDrivePower(
                     new Pose2d(
                             -gamepad1.left_stick_y,
@@ -42,12 +47,14 @@ public class TeleAuto_TeleOp extends LinearOpMode {
             drive.update();
             Pose2d poseEstimate = drive.getPoseEstimate();
 
-            if(gamepad1.a){
+            if(gamepad1.a && !aLast){
                 events.add(new TeleAuto_Event(poseEstimate, count, speed));
                 count++;
 
                 TeleAuto_PosStorage.lastEvents = events;
             }
+
+            aLast = gamepad1.a;
 
             if(gamepad1.right_bumper){
                 speed += 5;

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive.TeleAuto;
+package org.firstinspires.ftc.teamcode.drive.Mimicking;
 
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.constraints.AngularVelocityConstraint;
@@ -9,22 +9,17 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.util.RingDeterminationPipeline;
-import org.firstinspires.ftc.teamcode.util.RingDeterminationPipeline2;
+import org.firstinspires.ftc.teamcode.drive.dev.TeleAuto_Event;
+import org.firstinspires.ftc.teamcode.drive.dev.TeleAuto_PosStorage;
 import org.firstinspires.ftc.teamcode.util.RobotHardwareOBV2;
-import org.firstinspires.ftc.teamcode.util.RobotHardwareOBV2.ShootMode;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 @Autonomous
-public class TeleAuto_Auto extends LinearOpMode
+public class mimickingAutoV1 extends LinearOpMode
 {
     //Create elapsed time and robot hardware object
     RobotHardwareOBV2 robot   = new RobotHardwareOBV2();
@@ -49,7 +44,7 @@ public class TeleAuto_Auto extends LinearOpMode
             Trajectory move = drive.trajectoryBuilder(events.get(i-1).getPos())
                     .lineToLinearHeading(
                             new com.acmerobotics.roadrunner.geometry.Pose2d(events.get(i).getPos().getX(), events.get(i).getPos().getY(),
-                                    Math.toRadians(events.get(i).getPos().getHeading())),
+                                    events.get(i).getPos().getHeading()),
                             new MinVelocityConstraint(
                                     Arrays.asList(
                                             new AngularVelocityConstraint(DriveConstants.MAX_ANG_VEL),

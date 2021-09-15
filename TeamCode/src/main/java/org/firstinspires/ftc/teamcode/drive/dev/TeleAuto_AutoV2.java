@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive.TeleAuto;
+package org.firstinspires.ftc.teamcode.drive.dev;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -43,7 +43,7 @@ public class TeleAuto_AutoV2 extends LinearOpMode
         drive.setPoseEstimate(startPose);
 
         try {
-            File myTrajectories = new File("Trajectories.txt");
+            File myTrajectories = new File("/sdcard/Trajectories.txt");
             Scanner myTrajReader = new Scanner(myTrajectories);
             int count = 0;
 

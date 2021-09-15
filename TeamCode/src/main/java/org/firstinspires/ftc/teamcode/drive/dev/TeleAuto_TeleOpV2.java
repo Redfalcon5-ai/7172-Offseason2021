@@ -1,7 +1,8 @@
-package org.firstinspires.ftc.teamcode.drive.TeleAuto;
+package org.firstinspires.ftc.teamcode.drive.dev;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 
+@TeleOp(group = "drive")
 public class TeleAuto_TeleOpV2 extends LinearOpMode {
 
     ArrayList<TeleAuto_Event> events = new ArrayList<TeleAuto_Event>();
@@ -24,7 +26,7 @@ public class TeleAuto_TeleOpV2 extends LinearOpMode {
         drive.setPoseEstimate(startPos);
 
         try {
-            File trajFile = new File("Trajectories.txt");
+            File trajFile = new File("/sdcard/Trajectories.txt");
             if (trajFile.createNewFile()) {
                 telemetry.addData("File Creation", "Success");
                 telemetry.update();
@@ -83,7 +85,7 @@ public class TeleAuto_TeleOpV2 extends LinearOpMode {
 
 
         try {
-            FileWriter trajWriter = new FileWriter("Trajectories.txt");
+            FileWriter trajWriter = new FileWriter("/sdcard/Trajectories.txt");
 
             for(int i = 0; i < events.size(); i++){
                 trajWriter.write(events.get(i).getPos().getX()
